@@ -44,6 +44,7 @@ class Register(APIView):
         serializer.is_valid(raise_exception=True)
         user = serializer.save()
         data = serializer.data
+        sendEmail(user)
         return Response(data, status=status.HTTP_201_CREATED)
 
 class Logout(APIView):
@@ -59,9 +60,25 @@ class Logout(APIView):
         except Exception as e:
             return Response(status=status.HTTP_400_BAD_REQUEST)
 
+class activate(APIView):
+    def get(self, request, uidb64, token):
+        id = urlsafe_base64_decode(uidb64)
+        id = id.decode('utf-8')
+        try:
+            user = User.objects.get(pk=id)
+            if account_activation_token.check_token(user, token):
+                user.is_active = True
+                user.save()
+                return Response({"msg": "Account Activated"}, status.HTTP_200_OK)
+            return Response({"msg": "Account is already Activated"}, status.HTTP_200_OK)
+        except(TypeError, ValueError, OverflowError, User.DoesNotExist):
+            return Response({"msg": "Activation link is invalid"}, status.HTTP_400_BAD_REQUEST)
+
 class MyTokenObtainPairView(TokenObtainPairView):
     serializer_class = MyTokenObtainPairSerializer
     def post(self, request, *args, **kwargs):
         currentUser = User.objects.filter(email=request.data.get('email', None)).first()
+        if currentUser and not currentUser.is_active:
+            sendEmail(currentUser)
         response = super().post(request, *args, **kwargs)
         return response
