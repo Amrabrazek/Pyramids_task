@@ -8,7 +8,7 @@ def sendEmail(user):
     mail_subject = 'account activation'  
     message = render_to_string('acc_active_email.html', {  
         'user': user,  
-        'domain': '127.0.0.1:3000',  
+        'domain': '127.0.0.1:8000',  
         'uid':urlsafe_base64_encode(bytes(str(user.pk),'utf-8')),  
         'token':account_activation_token.make_token(user),  
     })  
