@@ -8,9 +8,24 @@
 
 ### Configure MYSQL database
 - Using root user, create a database called pyramidsdatabase hosted on the localhost.
+- import the mysql database sample into the created database 
 - In pyramids/pyramids/settings.py line 113, add the mysql password
-- In  pyramids/ directory, run "python manage.py makemigrations" and then "python manage.py migrate"
 
+```
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.mysql",
+        "NAME": "pyramidsdatabase",
+        "USER": "root",
+        "PASSWORD": "your_password",
+        "HOST": "localhost",
+        "PORT": "3306",
+    }
+}
+```
+
+- In  pyramids/ directory, run "python manage.py makemigrations" and then "python manage.py migrate"
+- only user1 and user 2 are activated, user 3 won't have any access
 ### Run the server
 - In pyramids/ directory, run "python manage.py runserver"
 - Create a super user using "python manage.py createsuperuser"
@@ -101,4 +116,7 @@ example :-
 ### Delete Post
 - Update Post Endpoint =(delete request)=> http://127.0.0.1:8000/post/delete/post_id.
 - Only authunticated post authors can delete Post.
+
+### Testing
+- use postman to test in order to be able to be authanticated.
 
