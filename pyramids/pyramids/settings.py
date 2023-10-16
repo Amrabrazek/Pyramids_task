@@ -54,7 +54,7 @@ REST_FRAMEWORK = {
 }
 
 SIMPLE_JWT = {
-    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=3),
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=10),
     "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
     "ROTATE_REFRESH_TOKENS": True,
     "BLACKLIST_AFTER_ROTATION": True,
@@ -110,7 +110,7 @@ DATABASES = {
         "ENGINE": "django.db.backends.mysql",
         "NAME": "pyramidsdatabase",
         "USER": "root",
-        "PASSWORD": "",
+        "PASSWORD": "()",
         "HOST": "localhost",
         "PORT": "3306",
     }

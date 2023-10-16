@@ -4,7 +4,6 @@ from django.template.loader import render_to_string
 from django.core.mail import EmailMessage 
 
 def sendEmail(user):
-    print("sending activation email")
     mail_subject = 'account activation'  
     message = render_to_string('acc_active_email.html', {  
         'user': user,  
