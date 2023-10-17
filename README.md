@@ -39,6 +39,7 @@ DATABASES = {
 
 ### Registeration
 - Register Endpoint =(post request)=> http://127.0.0.1:8000/user/register/
+  
 Example:-
 ```
     {
@@ -55,6 +56,7 @@ Example:-
 
 ### Login
 - Login Endpoint =(post request)=> http://127.0.0.1:8000/user/login/
+
 Example :-
 ```
     {
@@ -93,7 +95,8 @@ Example :-
 ### Create Post
 - Create Post Endpoint =(post request)=> http://127.0.0.1:8000/post/create/
 - Only authunticated users can Create Post.
-example :-
+
+Example :-
 ```
  {
   "title" : "title for post one",
@@ -103,7 +106,7 @@ example :-
 - The authunticated users is set to be the author of the post.
 
 ### Update Post
-- Update Post Endpoint =(put request)=> http://127.0.0.1:8000/post/update/post_id.
+- Update Post Endpoint =(put request)=> http://127.0.0.1:8000/post/update/post_id
 - Only authunticated post authors can update Post.
 example :-
 ```
@@ -114,7 +117,7 @@ example :-
 ```
 
 ### Delete Post
-- Update Post Endpoint =(delete request)=> http://127.0.0.1:8000/post/delete/post_id.
+- Update Post Endpoint =(delete request)=> http://127.0.0.1:8000/post/delete/post_id
 - Only authunticated post authors can delete Post.
 
 ### Testing
